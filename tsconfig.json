@@ -1,0 +1,61 @@
+/**
+ * @link https://www.typescriptlang.org/tsconfig
+ * @link https://cn.vuejs.org/guide/typescript/overview#configuring-tsconfig-json
+ * @link https://cn.vite.dev/guide/features#typescript-compiler-options
+ */
+
+{
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    // baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算，与 vite.config 中 alias 配置同步
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "@dcloudio/types",
+      "@mini-types/alipay",
+      "miniprogram-api-typings",
+      "@uni-helper/uni-types",
+      "./src/types/typings.d.ts"
+    ],
+    // 允许导入 .ts .mts .tsx 拓展名的文件
+    "allowImportingTsExtensions": true,
+    // 允许 JS
+    "allowJs": true,
+    // TS 严格模式
+    "strict": true,
+    "importHelpers": true,
+    // 不输出任何编译后的文件，只进行类型检查
+    "noEmit": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "vueCompilerOptions": {
+    // 调整 Volar（Vue 语言服务工具）解析行为，用于为 uni-app 组件提供 TypeScript 类型
+    "plugins": ["@uni-helper/uni-types/volar-plugin"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.jsx",
+    "src/**/*.vue",
+    "src/**/*.json"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
